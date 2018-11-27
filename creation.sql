@@ -56,4 +56,4 @@ INSERT INTO Categorie VALUES (1,"Films");
 INSERT INTO Client VALUES(1,"El Wassifi","a@a","222","Calais");
 INSERT INTO Produit VALUES (1,"Overlord",888.88,"222","2018-11-27 09:27:00",1);
 INSERT INTO Commande_client VALUES (1,8888.88,"2018-11-27 09:27:00",1,1);
-INSERT INTO Produit_commande VALUES(1,1,20);
+INSERT INTO Produit_commande VALUES(1,20,1);
