@@ -1,17 +1,17 @@
-DROP DATABASE IF EXISTS Bd_Catalogue;
-CREATE DATABASE Bd_Catalogue;
-USE Bd_Catalogue;
+DROP DATABASE IF EXISTS ividianodb;
+CREATE DATABASE ividianodb;
+USE ividianodb;
 
 CREATE TABLE Categorie
 (
-    id_categorie INT,
+    id_categorie INT NOT NULL AUTO_INCREMENT,
     nom_categorie VARCHAR(45),
     CONSTRAINT pk_id_categorie PRIMARY KEY (id_categorie)
 );
 
 CREATE TABLE Client
 (
-    id_client INT,
+    id_client INT NOT NULL AUTO_INCREMENT,
     nom_client VARCHAR(45),
     email_client VARCHAR(45),
     telephone_client VARCHAR(15),
@@ -21,11 +21,11 @@ CREATE TABLE Client
 
 CREATE TABLE Produit
 (
-    id_produit INT,
+    id_produit INT NOT NULL AUTO_INCREMENT,
     nom_produit VARCHAR(45),
     prix_produit DECIMAL(5,2),
     description_produit VARCHAR(250),
-    dernier_maj_produit TIMESTAMP,
+    dernier_maj_produit TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     id_categorie_produit INT,
     CONSTRAINT pk_id_produit PRIMARY KEY(id_produit),
     CONSTRAINT fk_id_categorie_produit FOREIGN KEY (id_categorie_produit) REFERENCES Categorie(id_categorie)
@@ -33,9 +33,9 @@ CREATE TABLE Produit
 
 CREATE TABLE Commande_client
 (
-    id_commande_client INT,
+    id_commande_client INT NOT NULL AUTO_INCREMENT,
     montant DECIMAL(6,2),
-    date_creation TIMESTAMP,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     no_confirmation INTEGER,
     client_id INT,
     CONSTRAINT pk_id_commande_client PRIMARY KEY(id_commande_client),
@@ -44,7 +44,7 @@ CREATE TABLE Commande_client
 
 CREATE TABLE Produit_commande
 (
-    commande_client_id INT,
+    commande_client_id INT NOT NULL AUTO_INCREMENT,
     quantite INT,
     produit_id INT,
     CONSTRAINT pk_commande_client_id PRIMARY KEY(commande_client_id),
